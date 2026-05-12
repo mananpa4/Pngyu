@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>CFBundleIconFile</key>
+	<string>icon.icns</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleGetInfoString</key>
+	<string>PNG image compression tool</string>
+	<key>CFBundleExecutable</key>
+	<string>Pngyu</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.nukesaq88.Pngyu</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.5</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.5</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleTypeName</key>
+			<string>PNG Image</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>png</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>icon.icns</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.png</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

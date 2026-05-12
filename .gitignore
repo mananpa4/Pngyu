@@ -1,2 +1,32 @@
 *.pro.user
 .DS_Store
+
+.cache/
+.vscode/
+
+# Qt build artifacts
+*.o
+moc_*.cpp
+moc_*.h
+ui_*.h
+qrc_*.cpp
+moc_predefs.h
+.qmake.stash
+Makefile
+
+.qtcreator/
+
+# Build directories
+build/
+build-*/
+
+# Application bundle (macOS)
+*.app/
+
+# Temporary files
+*~
+*.swp
+*.swo
+
+# Translation binary files (generated from .ts)
+*.qm

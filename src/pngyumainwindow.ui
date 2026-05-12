@@ -1,0 +1,1137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PngyuMainWindow</class>
+ <widget class="QMainWindow" name="PngyuMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>618</width>
+    <height>715</height>
+   </rect>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">Pngyu</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#pushButton_preview,
+#pushButton_exec,
+#pushButton_stop_exec
+{
+  border-style: outset;
+  border : 1px solid rgba(127,127,127,127);
+  border-radius: 5px;
+}
+
+#pushButton_preview::checked
+{
+  border-style: outset;
+  border : 1px solid rgba(127,127,127,127);
+  border-radius: 5px;
+  background : rgba(127, 127, 127, 64);
+}
+
+
+QFrame#frame_speed,
+QFrame#frame_dithered,
+QFrame#frame_colors,
+QFrame#frame_output_filename,
+QFrame#frame_ie6
+{
+    border: 1px solid rgba(127,127,127,63);
+    border-radius: 5px;
+    padding: 2px;
+}
+
+/*left*/
+#pushButton_compress_option_default,
+#pushButton_output_option_overwrite_original
+{
+  border-style: outset;
+  border : 1px solid rgba(127,127,127,127);
+  border-top-left-radius : 6px;
+  border-bottom-left-radius: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+/*right*/
+#pushButton_compress_option_custom,
+#pushButton_output_option_custom
+{
+  border-style: outset;
+  border : 1px solid rgba(127,127,127,127);
+  border-top-right-radius : 6px;
+  border-bottom-right-radius: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#pushButton_compress_option_default::checked,
+#pushButton_compress_option_default::pressed,
+#pushButton_compress_option_custom::checked,
+#pushButton_compress_option_custom::pressed,
+#pushButton_output_option_custom::checked,
+#pushButton_output_option_custom::pressed,
+#pushButton_output_option_overwrite_original::checked,
+#pushButton_output_option_overwrite_original::pressed
+{
+  background : rgba(127, 127, 127, 64);
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="margin" stdset="0">
+     <number>6</number>
+    </property>
+    <item row="7" column="0" colspan="5">
+     <widget class="QWidget" name="widget" native="true">
+      <layout class="QGridLayout" name="gridLayout_16">
+       <property name="margin" stdset="0">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <item row="0" column="6">
+        <widget class="QPushButton" name="pushButton_exec">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>180</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Compress Start</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QPushButton" name="pushButton_stop_exec">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>180</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Compress Stop</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resource/resource.qrc">
+           <normaloff>:/icons/stop.png</normaloff>:/icons/stop.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QWidget" name="widget_executing" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <property name="spacing">
+           <number>4</number>
+          </property>
+          <property name="margin" stdset="0">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="SpinnerWidget" name="spinner_exec" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_executing">
+            <property name="text">
+             <string>Now Compressing...</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+      <zorder>pushButton_stop_exec</zorder>
+      <zorder>pushButton_exec</zorder>
+      <zorder>widget_executing</zorder>
+     </widget>
+    </item>
+    <item row="5" column="0" colspan="5">
+     <widget class="QGroupBox" name="groupBox_output_option">
+      <property name="title">
+       <string>Output Option</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <property name="leftMargin">
+        <number>6</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>6</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <item row="1" column="0" rowspan="2" colspan="3">
+        <widget class="QWidget" name="widget_output_option_custom" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_13">
+          <property name="verticalSpacing">
+           <number>4</number>
+          </property>
+          <property name="margin" stdset="0">
+           <number>0</number>
+          </property>
+          <item row="1" column="0">
+           <widget class="QGroupBox" name="groupBox_output_filename">
+            <property name="title">
+             <string>Output Filename</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_10">
+             <property name="margin" stdset="0">
+              <number>6</number>
+             </property>
+             <item row="0" column="0" colspan="3">
+              <widget class="QComboBox" name="comboBox_output_filename_mode">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Output filename mode</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>[Original].png</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Custom Filename</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="0" colspan="3">
+              <widget class="QWidget" name="widget_custom_output_filename" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <property name="margin" stdset="0">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_custom_filename">
+                  <property name="text">
+                   <string>Filename:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_output_filename">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::Panel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Sunken</enum>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_3">
+                   <property name="margin" stdset="0">
+                    <number>2</number>
+                   </property>
+                   <item row="0" column="2">
+                    <widget class="QLineEdit" name="lineEdit_output_file_prefix">
+                     <property name="toolTip">
+                      <string>Input custom filename prefix</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="3">
+                    <widget class="QLabel" name="label_outoput_original_name">
+                     <property name="text">
+                      <string>+ [Original Name] +</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="4">
+                    <widget class="QLineEdit" name="lineEdit_output_file_suffix">
+                     <property name="toolTip">
+                      <string>Input custom filename suffix</string>
+                     </property>
+                     <property name="text">
+                      <string notr="true">.png</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QGroupBox" name="groupBox_output_option_other">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_11">
+             <property name="margin" stdset="0">
+              <number>6</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QCheckBox" name="checkBox_overwrite">
+               <property name="text">
+                <string>Overwrite</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QGroupBox" name="groupBox_output_directory_mode">
+            <property name="title">
+             <string>Output Directory</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <property name="margin" stdset="0">
+              <number>6</number>
+             </property>
+             <item row="1" column="1">
+              <widget class="QWidget" name="widget_other_output_directory" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <property name="spacing">
+                 <number>4</number>
+                </property>
+                <property name="margin" stdset="0">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_output_other_directory">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="toolTip">
+                   <string>Save to a specified directory</string>
+                  </property>
+                  <property name="text">
+                   <string>Other Directory</string>
+                  </property>
+                  <attribute name="buttonGroup">
+                   <string notr="true">buttonGroup_output_directory_mode</string>
+                  </attribute>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit_output_directory">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>28</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Input output directory or drop it here ...</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">padding-left: 4px;</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Input output directory or drop it here ...</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="toolButton_open_output_directory">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resource/resource.qrc">
+                    <normaloff>:/icons/folder.png</normaloff>:/icons/folder.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QRadioButton" name="radioButton_output_same_directory">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Save to the same directory as the original file</string>
+               </property>
+               <property name="text">
+                <string>Same Directory</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroup_output_directory_mode</string>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QWidget" name="widget_output_option_mode" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_20">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="pushButton_output_option_overwrite_original">
+            <property name="minimumSize">
+             <size>
+              <width>140</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Overwrite the original</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_output_option_mode</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButton_output_option_custom">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Custom</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_output_option_mode</string>
+            </attribute>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="9" column="4">
+     <widget class="QLabel" name="label_homepage">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string notr="true">&lt;a href=&quot;http://nukesaq88.github.io/Pngyu/&quot; style=&quot;color: darkgray;&quot;&gt;Homepage&lt;/a&gt;</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::TextFormat::RichText</enum>
+      </property>
+      <property name="openExternalLinks">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="5">
+     <widget class="QGroupBox" name="groupBox_compress_option">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="title">
+       <string>Compress Option</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_12">
+       <property name="leftMargin">
+        <number>6</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>6</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <item row="0" column="0" colspan="2">
+        <widget class="QWidget" name="widget_compress_option_row_1" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="margin" stdset="0">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="pushButton_compress_option_default">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Default</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_compress_option_mode</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_compress_option_custom">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Custom</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_compress_option_mode</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_preview">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>160</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Preview</string>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0" rowspan="2" colspan="2">
+        <widget class="QWidget" name="widget_compress_option_custom_options" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_19">
+          <property name="margin" stdset="0">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>4</number>
+          </property>
+          <item row="0" column="0" colspan="2">
+           <widget class="QWidget" name="widget_compress_option_sliders" native="true">
+            <layout class="QGridLayout" name="gridLayout_15">
+             <property name="margin" stdset="0">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>4</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QFrame" name="frame_colors">
+               <property name="frameShape">
+                <enum>QFrame::Shape::Panel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Sunken</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_6">
+                <property name="margin" stdset="0">
+                 <number>4</number>
+                </property>
+                <property name="spacing">
+                 <number>4</number>
+                </property>
+                <item row="1" column="2">
+                 <widget class="QSpinBox" name="spinBox_colors">
+                  <property name="minimum">
+                   <number>2</number>
+                  </property>
+                  <property name="maximum">
+                   <number>256</number>
+                  </property>
+                  <property name="value">
+                   <number>256</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QSlider" name="horizontalSlider_colors">
+                  <property name="minimum">
+                   <number>0</number>
+                  </property>
+                  <property name="maximum">
+                   <number>7</number>
+                  </property>
+                  <property name="value">
+                   <number>7</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
+                  <property name="tickPosition">
+                   <enum>QSlider::TickPosition::TicksAbove</enum>
+                  </property>
+                  <property name="tickInterval">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_colors">
+                  <property name="text">
+                   <string>Colors</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QFrame" name="frame_speed">
+               <property name="frameShape">
+                <enum>QFrame::Shape::Panel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Sunken</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_5">
+                <property name="spacing">
+                 <number>3</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_compress_high_quality">
+                  <property name="text">
+                   <string>High Quality</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QSlider" name="horizontalSlider_compress_speed">
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>10</number>
+                  </property>
+                  <property name="value">
+                   <number>3</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
+                  <property name="tickPosition">
+                   <enum>QSlider::TickPosition::TicksAbove</enum>
+                  </property>
+                  <property name="tickInterval">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QLabel" name="label_compress_high_speed">
+                  <property name="text">
+                   <string>High Speed</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QWidget" name="widget_compress_option_check_boxes" native="true">
+            <layout class="QGridLayout" name="gridLayout_17">
+             <property name="margin" stdset="0">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>4</number>
+             </property>
+             <item row="0" column="1">
+              <widget class="QFrame" name="frame_ie6">
+               <property name="frameShape">
+                <enum>QFrame::Shape::Panel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Sunken</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_7">
+                <property name="margin" stdset="0">
+                 <number>4</number>
+                </property>
+                <property name="spacing">
+                 <number>4</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="checkBox_ie6_support">
+                  <property name="text">
+                   <string>IE6 alpha support</string>
+                  </property>
+                  <property name="checked">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QFrame" name="frame_dithered">
+               <property name="frameShape">
+                <enum>QFrame::Shape::Panel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Sunken</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_4">
+                <property name="margin" stdset="0">
+                 <number>4</number>
+                </property>
+                <property name="spacing">
+                 <number>4</number>
+                </property>
+                <item row="0" column="1">
+                 <widget class="QCheckBox" name="checkBox_dithered">
+                  <property name="text">
+                   <string>Dithered</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="5">
+     <widget class="QGroupBox" name="groupBox_filelist">
+      <property name="title">
+       <string>Files</string>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <property name="leftMargin">
+        <number>6</number>
+       </property>
+       <property name="topMargin">
+        <number>6</number>
+       </property>
+       <property name="rightMargin">
+        <number>6</number>
+       </property>
+       <property name="bottomMargin">
+        <number>3</number>
+       </property>
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <item row="3" column="0">
+        <widget class="QToolButton" name="toolButton_add_file">
+         <property name="maximumSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../resource/resource.qrc">
+           <normaloff>:/icons/plus.png</normaloff>:/icons/plus.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="4">
+        <widget class="QPushButton" name="pushButton_filelist_clear">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Clear all files</string>
+         </property>
+         <property name="text">
+          <string>Clear</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resource/resource.qrc">
+           <normaloff>:/icons/clear.png</normaloff>:/icons/clear.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QWidget" name="widget_file_appending" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <property name="margin" stdset="0">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="SpinnerWidget" name="spinner_file_append" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>15</width>
+              <height>15</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>15</width>
+              <height>15</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_file_appending">
+            <property name="text">
+             <string>Adding files...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_stop_file_appending">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Stop searching</string>
+            </property>
+            <property name="text">
+             <string>Stop</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resource/resource.qrc">
+              <normaloff>:/icons/stop.png</normaloff>:/icons/stop.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="5">
+        <widget class="QTableWidget" name="tableWidget_filelist">
+         <property name="editTriggers">
+          <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+         </property>
+         <property name="showGrid">
+          <bool>false</bool>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>120</number>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="verticalHeaderDefaultSectionSize">
+          <number>24</number>
+         </attribute>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>618</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuPngyu">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="action_preferences"/>
+    <addaction name="action_quit"/>
+   </widget>
+   <addaction name="menuPngyu"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_preferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+  </action>
+  <action name="action_quit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>SpinnerWidget</class>
+   <extends>QWidget</extends>
+   <header>spinnerwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>horizontalSlider_colors</tabstop>
+  <tabstop>spinBox_colors</tabstop>
+  <tabstop>horizontalSlider_compress_speed</tabstop>
+  <tabstop>checkBox_ie6_support</tabstop>
+  <tabstop>checkBox_dithered</tabstop>
+  <tabstop>tableWidget_filelist</tabstop>
+  <tabstop>toolButton_add_file</tabstop>
+  <tabstop>pushButton_filelist_clear</tabstop>
+  <tabstop>pushButton_output_option_overwrite_original</tabstop>
+  <tabstop>radioButton_output_same_directory</tabstop>
+  <tabstop>radioButton_output_other_directory</tabstop>
+  <tabstop>lineEdit_output_directory</tabstop>
+  <tabstop>toolButton_open_output_directory</tabstop>
+  <tabstop>comboBox_output_filename_mode</tabstop>
+  <tabstop>lineEdit_output_file_prefix</tabstop>
+  <tabstop>lineEdit_output_file_suffix</tabstop>
+  <tabstop>checkBox_overwrite</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../resource/resource.qrc"/>
+ </resources>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup_output_directory_mode"/>
+  <buttongroup name="buttonGroup_output_option_mode"/>
+  <buttongroup name="buttonGroup_compress_option_mode"/>
+ </buttongroups>
+</ui>

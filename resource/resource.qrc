@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>clear.png</file>
+        <file>fileminus.png</file>
+        <file>fileplus.png</file>
+        <file>folder.png</file>
+        <file>gear.png</file>
+        <file>minus.png</file>
+        <file>search.png</file>
+        <file>zoomin.png</file>
+        <file>zoomout.png</file>
+        <file>spinner.png</file>
+        <file>check.png</file>
+        <file>stop.png</file>
+        <file>plus.png</file>
+    </qresource>
+    <qresource prefix="/background">
+        <file>checkerboard.png</file>
+        <file>black.png</file>
+        <file>white.png</file>
+        <file>drop_here.png</file>
+    </qresource>
+</RCC>

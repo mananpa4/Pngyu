@@ -1,0 +1,119 @@
+name: Build Test
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.10.1'
+        host: 'mac'
+        target: 'desktop'
+        arch: 'clang_64'
+        
+    - name: Install CMake
+      uses: jwlawson/actions-setup-cmake@v2
+      with:
+        cmake-version: 'latest'
+        
+    - name: Build
+      run: |
+        chmod +x scripts/build_mac.sh
+        ./scripts/build_mac.sh
+        
+    - name: Deploy
+      run: |
+        chmod +x scripts/deploy_mac.sh
+        ./scripts/deploy_mac.sh
+        
+    - name: Upload DMG
+      uses: actions/upload-artifact@v4
+      with:
+        name: Pngyu-macOS
+        path: build/Release/Pngyu.dmg
+        
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.10.1'
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_msvc2022_64'
+        
+    - name: Install CMake
+      uses: jwlawson/actions-setup-cmake@v2
+      with:
+        cmake-version: 'latest'
+        
+    - name: Build
+      shell: powershell
+      run: |
+        .\scripts\build_win.ps1
+        
+    - name: Deploy
+      shell: powershell
+      run: |
+        .\scripts\deploy_win.ps1
+        
+    - name: Upload ZIP
+      uses: actions/upload-artifact@v4
+      with:
+        name: Pngyu-Windows
+        path: build/Pngyu-Windows-x64.zip
+        
+  create-release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [build-macos, build-windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Extract version
+      id: version
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/v}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        
+    - name: Download macOS DMG
+      uses: actions/download-artifact@v4
+      with:
+        name: Pngyu-macOS
+        
+    - name: Download Windows ZIP
+      uses: actions/download-artifact@v4
+      with:
+        name: Pngyu-Windows
+        
+    - name: Rename files with version
+      run: |
+        mv Pngyu.dmg Pngyu-mac-${{ steps.version.outputs.version }}.dmg
+        mv Pngyu-Windows-x64.zip Pngyu-win-${{ steps.version.outputs.version }}.zip
+        ls -la
+        
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          Pngyu-mac-${{ steps.version.outputs.version }}.dmg
+          Pngyu-win-${{ steps.version.outputs.version }}.zip
+        draft: false
+        prerelease: false

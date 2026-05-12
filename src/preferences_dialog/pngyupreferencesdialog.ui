@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PngyuPreferencesDialog</class>
+ <widget class="QDialog" name="PngyuPreferencesDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>440</width>
+    <height>478</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Preferences</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="0" colspan="3">
+    <widget class="QWidget" name="widget_buttons" native="true">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <property name="topMargin">
+       <number>3</number>
+      </property>
+      <property name="rightMargin">
+       <number>3</number>
+      </property>
+      <property name="bottomMargin">
+       <number>3</number>
+      </property>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButton_apply">
+        <property name="text">
+         <string>&amp;Apply</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="pushButton_ok">
+        <property name="text">
+         <string>&amp;OK</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="pushButton_cancel">
+        <property name="text">
+         <string>&amp;Cancel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="pushButton_close">
+        <property name="text">
+         <string>&amp;Close</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QWidget" name="widget_preference_main" native="true">
+     <layout class="QGridLayout" name="gridLayout_3">
+      <property name="margin" stdset="0">
+       <number>3</number>
+      </property>
+      <item row="1" column="0">
+       <widget class="QGroupBox" name="groupBox_general">
+        <property name="title">
+         <string>General</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="1" column="0" colspan="2">
+          <widget class="QWidget" name="widget_n_jbs" native="true">
+           <layout class="QGridLayout" name="gridLayout_6">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBox_n_jobs">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_n_jobs">
+              <property name="text">
+               <string>Compress N files at once</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="2" column="0" colspan="2">
+          <widget class="QWidget" name="widget_timeout" native="true">
+           <layout class="QGridLayout" name="gridLayout_timeout">
+            <property name="margin" stdset="0">
+             <number>0</number>
+            </property>
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBox_timeout">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="suffix">
+               <string> ms</string>
+              </property>
+              <property name="minimum">
+               <number>1000</number>
+              </property>
+              <property name="maximum">
+               <number>300000</number>
+              </property>
+              <property name="singleStep">
+               <number>1000</number>
+              </property>
+              <property name="value">
+               <number>20000</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_timeout">
+              <property name="text">
+               <string>Process timeout</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="2">
+          <widget class="QCheckBox" name="checkBox_save_compress_options">
+           <property name="text">
+            <string>Remember last compress options</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" colspan="2">
+          <widget class="QWidget" name="widget_pngquant_path" native="true">
+           <layout class="QGridLayout" name="gridLayout_7">
+            <property name="margin" stdset="0">
+             <number>0</number>
+            </property>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="comboBox_pngquant_path">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="editable">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_pngquant_path">
+              <property name="text">
+               <string>pngquant location</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QToolButton" name="toolButton_open_pngquant_location">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../../resource/resource.qrc">
+                <normaloff>:/icons/folder.png</normaloff>:/icons/folder.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="2">
+          <widget class="QCheckBox" name="checkBox_force_execute">
+           <property name="text">
+            <string>Force execute even if saved size was negative</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="2">
+          <widget class="QCheckBox" name="checkBox_save_output_options">
+           <property name="text">
+            <string>Remember last output options</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QWidget" name="widget_language" native="true">
+           <layout class="QGridLayout" name="gridLayout_language">
+            <property name="margin" stdset="0">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_language">
+              <property name="text">
+               <string>Language</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="comboBox_language">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <item>
+               <property name="text">
+                <string>System Default</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>English</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>日本語</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>简体中文</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QGroupBox" name="groupBox_imageoptim_integration">
+        <property name="title">
+         <string>ImageOptim integration</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_imageoptim_path">
+           <property name="text">
+            <string>Location</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEdit_imageoptim_location"/>
+         </item>
+         <item row="1" column="2">
+          <widget class="QToolButton" name="toolButton_open_imageoptim_location">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../../resource/resource.qrc">
+             <normaloff>:/icons/folder.png</normaloff>:/icons/folder.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="3">
+          <widget class="QComboBox" name="comboBox_imageoptim_integration">
+           <item>
+            <property name="text">
+             <string>Ask every time</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Always enabled</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Always disabled</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>comboBox_language</tabstop>
+  <tabstop>spinBox_n_jobs</tabstop>
+  <tabstop>spinBox_timeout</tabstop>
+  <tabstop>comboBox_pngquant_path</tabstop>
+  <tabstop>toolButton_open_pngquant_location</tabstop>
+  <tabstop>checkBox_force_execute</tabstop>
+  <tabstop>checkBox_save_compress_options</tabstop>
+  <tabstop>checkBox_save_output_options</tabstop>
+  <tabstop>comboBox_imageoptim_integration</tabstop>
+  <tabstop>lineEdit_imageoptim_location</tabstop>
+  <tabstop>toolButton_open_imageoptim_location</tabstop>
+  <tabstop>pushButton_apply</tabstop>
+  <tabstop>pushButton_cancel</tabstop>
+  <tabstop>pushButton_close</tabstop>
+  <tabstop>pushButton_ok</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../resource/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
