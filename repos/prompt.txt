@@ -1,0 +1,74 @@
+Quiero que construyas una aplicación web similar a Ezgif.com (específicamente el flujo 
+"GIF to WebM converter"), replicando su funcionalidad y patrón de UI, pero como un 
+proyecto propio e independiente (no copies textos ni marca de Ezgif).
+
+## Objetivo
+Un conversor online de imágenes animadas (GIF, APNG, WebP, AVIF) a video WebM, con una 
+arquitectura pensada para poder añadir fácilmente otras herramientas similares en el futuro 
+(GIF to MP4, Video to GIF, WebP to GIF, etc.) bajo el mismo layout.
+
+## Stack sugerido
+- Frontend: Next.js (React) + TailwindCSS
+- Backend: Node.js (API routes de Next.js) o un servicio separado en Express
+- Procesamiento de video/imagen: FFmpeg (usando fluent-ffmpeg o invocación directa vía child_process)
+- Almacenamiento temporal de archivos subidos: carpeta local /tmp o S3 con borrado automático
+- Cola/procesamiento: procesamiento síncrono simple para MVP; opcional worker con BullMQ + Redis si el archivo es grande
+
+## Estructura de páginas
+1. **Home / Landing**: header con logo, navegación superior por categorías (GIF maker, 
+   Video tools, Optimize, Effects, Split, Add text, WebP, APNG) y una sub-navegación con 
+   las herramientas específicas de esa categoría (GIF to WebM, GIF to MP4, GIF to MOV, 
+   Video to GIF, etc.). Diseño simple, tipo utilidad, sin distracciones.
+2. **Página de la herramienta (ej. /gif-to-webm)**:
+   - Título de la herramienta y una breve descripción explicando qué hace y para qué sirve.
+   - Caja de "Upload image" con tres formas de entrada:
+     a) Botón "Elegir archivo" + drag and drop
+     b) Pegar archivo desde el portapapeles (evento paste)
+     c) Campo de texto para pegar una URL directa de imagen
+   - Texto informativo: tipos soportados (GIF, APNG, WebP, AVIF, JXL, MNG), tamaño máximo 
+     (definir uno, ej. 200MB), y aviso de que los archivos subidos se eliminan automáticamente 
+     tras 1 hora.
+   - Botón "Upload!" que sube el archivo y redirige a la página de opciones de conversión.
+3. **Página de opciones de conversión** (tras subir el archivo):
+   - Preview del archivo original (thumbnail/reproductor del GIF).
+   - Formulario con opciones de conversión:
+     - Codec de salida: VP8 o VP9 (VP9 por defecto, mejor compresión)
+     - Bitrate/calidad de salida (slider o input numérico, ej. kbps)
+     - Redimensionar: ancho en px (mantener proporción automáticamente)
+     - Reducir FPS (opcional, dropdown con valores comunes)
+     - Recorte (crop) opcional
+     - Checkbox de loop / bucle infinito
+   - Botón "Convert to WebM!" que ejecuta la conversión en el backend con FFmpeg.
+4. **Página de resultado**:
+   - Reproductor con el video WebM resultante.
+   - Comparación de tamaño de archivo (original vs. convertido).
+   - Botón de descarga directa.
+   - Botón "Convertir otro archivo".
+   - Sección de "herramientas similares" enlazando a otras rutas (WebP to WebM, APNG to WebM, GIF to MP4, GIF to MOV), aunque sea con placeholders si aún no están implementadas.
+
+## Backend / lógica de conversión
+- Endpoint POST /api/upload: recibe el archivo (multipart/form-data) o una URL remota, 
+  valida tipo MIME y tamaño máximo, lo guarda temporalmente con un ID único, y devuelve 
+  metadata (dimensiones, nº de frames, tamaño, duración estimada).
+- Endpoint POST /api/convert: recibe el ID del archivo subido + opciones (codec, bitrate, 
+  ancho, fps, crop, loop), ejecuta FFmpeg para convertir a WebM, guarda el resultado y 
+  devuelve la URL de descarga + tamaño final.
+- Job de limpieza (cron o setTimeout) que borra archivos subidos y convertidos después de 
+  1 hora.
+- Manejo de errores: archivo corrupto, formato no soportado, tamaño excedido, timeout de 
+  conversión.
+
+## Requisitos no funcionales
+- Diseño responsive (mobile y desktop).
+- Feedback visual de progreso durante la subida y la conversión (spinner/barra de progreso).
+- Meta tags SEO básicos por herramienta (title, description).
+- Sin necesidad de login/cuenta de usuario.
+- Código organizado por módulos: /components (UI compartida), /pages o /app (rutas), 
+  /lib (lógica de conversión FFmpeg), /api (endpoints).
+- Incluir un README explicando cómo instalar FFmpeg y correr el proyecto localmente.
+
+## Alcance del MVP
+Enfócate primero en el flujo completo funcional de "GIF to WebM" (subida → opciones → 
+conversión → descarga). Deja la arquitectura preparada (rutas dinámicas, componentes 
+reutilizables) para añadir después otras conversiones (GIF to MP4, Video to GIF, WebP to GIF) 
+sin duplicar código.

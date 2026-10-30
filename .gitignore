@@ -30,3 +30,13 @@ build-*/
 
 # Translation binary files (generated from .ts)
 *.qm
+
+# Downloaded FFmpeg binaries (use scripts/download_ffmpeg.*)
+ffmpeg_bin/
+
+# Web application
+web/node_modules/
+web/.next/
+web/.env.local
+web/coverage/
+web/*.tsbuildinfo

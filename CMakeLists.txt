@@ -67,6 +67,10 @@ set(PROJECT_SOURCES
     src/pngyu_defines.h
     src/pngyu_custom_tablewidget_item.h
     src/spinnerwidget.h
+    src/animated_webm_converter_dialog.cpp
+    src/animated_webm_converter_dialog.h
+    src/ffmpeg_util.cpp
+    src/ffmpeg_util.h
     src/executecompressthread.cpp
     src/executecompressthread.h
     src/executecompressworkerthread.cpp
@@ -132,10 +136,29 @@ elseif(WIN32)
             ${CMAKE_SOURCE_DIR}/pngquant_bin/win/pngquant.exe
             $<TARGET_FILE_DIR:Pngyu>/pngquant/pngquant.exe
     )
+
+    if(EXISTS "${CMAKE_SOURCE_DIR}/ffmpeg_bin/win/ffmpeg.exe")
+        add_custom_command(TARGET Pngyu POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+                $<TARGET_FILE_DIR:Pngyu>/ffmpeg
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                ${CMAKE_SOURCE_DIR}/ffmpeg_bin/win/ffmpeg.exe
+                $<TARGET_FILE_DIR:Pngyu>/ffmpeg/ffmpeg.exe
+        )
+    endif()
 else()
     qt_add_executable(Pngyu
         ${PROJECT_SOURCES}
         ${PROJECT_RESOURCES}
+    )
+endif()
+
+if(APPLE AND EXISTS "${CMAKE_SOURCE_DIR}/ffmpeg_bin/mac/ffmpeg")
+    add_custom_command(TARGET Pngyu POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/ffmpeg_bin/mac/ffmpeg
+            $<TARGET_BUNDLE_CONTENT_DIR:Pngyu>/Resources/ffmpeg
+        COMMAND chmod +x $<TARGET_BUNDLE_CONTENT_DIR:Pngyu>/Resources/ffmpeg
     )
 endif()
 

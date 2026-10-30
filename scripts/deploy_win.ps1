@@ -98,6 +98,17 @@ if (Test-Path $PngquantSrc) {
     Write-Host "The executable should have been copied during build." -ForegroundColor Yellow
 }
 
+# Copy FFmpeg when it was downloaded before the build.
+$FfmpegSrc = Join-Path $BuildDir "ffmpeg\ffmpeg.exe"
+$FfmpegDir = Join-Path $DeployDir "ffmpeg"
+if (Test-Path $FfmpegSrc) {
+    New-Item -ItemType Directory -Path $FfmpegDir -Force | Out-Null
+    Copy-Item -LiteralPath $FfmpegSrc -Destination (Join-Path $FfmpegDir "ffmpeg.exe") -Force
+    Write-Host "Copied: ffmpeg/ffmpeg.exe -> $FfmpegDir" -ForegroundColor Green
+} else {
+    Write-Host "Warning: FFmpeg was not bundled. Run scripts\download_ffmpeg.ps1 before building." -ForegroundColor Yellow
+}
+
 Write-Host ""
 Write-Host "Deployment completed successfully!" -ForegroundColor Green
 Write-Host "Distribution package created at: $DeployDir" -ForegroundColor Cyan

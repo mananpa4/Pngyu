@@ -26,6 +26,11 @@ jobs:
       uses: jwlawson/actions-setup-cmake@v2
       with:
         cmake-version: 'latest'
+
+    - name: Download FFmpeg
+      run: |
+        chmod +x scripts/download_ffmpeg.sh
+        ./scripts/download_ffmpeg.sh
         
     - name: Build
       run: |
@@ -62,6 +67,10 @@ jobs:
       uses: jwlawson/actions-setup-cmake@v2
       with:
         cmake-version: 'latest'
+
+    - name: Download FFmpeg
+      shell: powershell
+      run: .\scripts\download_ffmpeg.ps1
         
     - name: Build
       shell: powershell

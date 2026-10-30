@@ -105,7 +105,6 @@ PngyuPreferencesDialog::image_optim_integrate_mode() {
       return pngyu::IMAGEOPTIM_ASK_EVERY_TIME;
     }
   }
-  return pngyu::IMAGEOPTIM_ASK_EVERY_TIME;
 }
 
 void PngyuPreferencesDialog::set_pngquant_paths(const QStringList& paths) {

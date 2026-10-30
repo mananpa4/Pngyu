@@ -18,7 +18,9 @@
 #include <QStandardPaths>
 #include <QTime>
 #include <QUrl>
+#include <QAction>
 
+#include "animated_webm_converter_dialog.h"
 #include "executecompressworkerthread.h"
 #include "pngyu_custom_tablewidget_item.h"
 #include "pngyu_execute_pngquant_command.h"
@@ -161,6 +163,15 @@ PngyuMainWindow::PngyuMainWindow(QWidget* parent)
   connect(ui->action_preferences, SIGNAL(triggered()), this,
           SLOT(menu_preferences_pushed()));
   connect(ui->action_quit, SIGNAL(triggered()), this, SLOT(menu_quit_pushed()));
+
+  QAction* const webm_converter_action =
+      new QAction(tr("Image and video converter..."), this);
+  ui->menuPngyu->insertAction(ui->action_preferences, webm_converter_action);
+  ui->menuPngyu->insertSeparator(ui->action_preferences);
+  connect(webm_converter_action, &QAction::triggered, this, [this]() {
+    AnimatedWebmConverterDialog dialog(this);
+    dialog.exec();
+  });
 
   // connect preference dialogs
   connect(m_preferences_dialog, SIGNAL(apply_pushed_signal()), this,
